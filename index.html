@@ -2,16 +2,21 @@
 <html>
 <head>
     <title>KnockoutDatagrid</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
-    <script type="text/javascript" src="/libs/jquery.js"></script>
-    <script type="text/javascript" src="/libs/knockoutjs.js"></script>
-    <script type="text/javascript" src="/js/datagrid.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <script type="text/javascript" src="libs/jquery.js"></script>
+    <script type="text/javascript" src="libs/knockoutjs.js"></script>
+    <script type="text/javascript" src="js/datagrid.js"></script>
 </head>
 <body>
 <div class="container">
     <table class="table tbl-bordered">
         <thead>
+            <tr>
+                <td><input type="text"/></td>
+                <td><input type="text"/></td>
+                <td><input type="text"/></td>
+            </tr>
             <tr>
                 <th><a data-bind="sortable: {key: 'name'}" href="javascript:void(0);">Name</a></th>
                 <th><a data-bind="sortable: {key: 'sales'}" href="javascript:void(0);">Sales</a></th>

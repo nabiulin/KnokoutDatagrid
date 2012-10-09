@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KnockoutDatagrid</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
+    <script type="text/javascript" src="/libs/jquery.js"></script>
+    <script type="text/javascript" src="/libs/knockoutjs.js"></script>
+    <script type="text/javascript" src="/js/datagrid.js"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table tbl-bordered">
+        <thead>
+            <th><a data-bind="sortable: {key: 'name'}" href="javascript:void(0);">Name</a></th>
+            <th><a data-bind="sortable: {key: 'sales'}" href="javascript:void(0);">Sales</a></th>
+            <th><a data-bind="sortable: {key: 'price'}" href="javascript:void(0);">Price</a></th>
+        </thead>
+        <tbody data-bind="foreach: items">
+            <tr>
+                <td data-bind="text: name"></td>
+                <td data-bind="text: sales"></td>
+                <td data-bind="text: price"></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    var items = [
+        { name: "Well-Travelled Kitten", sales: 352, price: 75.95 },
+        { name: "Speedy Coyote", sales: 89, price: 190.00 },
+        { name: "Furious Lizard", sales: 152, price: 25.00 },
+        { name: "Indifferent Monkey", sales: 1, price: 99.95 },
+        { name: "Brooding Dragon", sales: 0, price: 6350 },
+        { name: "Ingenious Tadpole", sales: 39450, price: 0.35 },
+        { name: "Optimistic Snail", sales: 420, price: 1.50 }
+    ];
+</script>
+</body>
+</html>

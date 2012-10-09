@@ -12,16 +12,17 @@
 <div class="container">
     <table class="table tbl-bordered">
         <thead>
-            <th><a data-bind="sortable: {key: 'name'}" href="javascript:void(0);">Name</a></th>
-            <th><a data-bind="sortable: {key: 'sales'}" href="javascript:void(0);">Sales</a></th>
-            <th><a data-bind="sortable: {key: 'price'}" href="javascript:void(0);">Price</a></th>
+            <tr>
+                <th><a data-bind="sortable: {key: 'name'}" href="javascript:void(0);">Name</a></th>
+                <th><a data-bind="sortable: {key: 'sales'}" href="javascript:void(0);">Sales</a></th>
+                <th><a data-bind="sortable: {key: 'price'}" href="javascript:void(0);">Price</a></th>
+            </tr>
         </thead>
         <tbody data-bind="foreach: items">
             <tr>
                 <td data-bind="text: name"></td>
                 <td data-bind="text: sales"></td>
                 <td data-bind="text: price"></td>
-                <td></td>
             </tr>
         </tbody>
     </table>

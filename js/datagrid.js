@@ -14,10 +14,10 @@ $(function(){
      * @constructor
      */
     var GridModel = function(item) {
-        var _self = this;
-        _self.name = ko.observable(item.name);
-        _self.sales = ko.observable(item.sales);
-        _self.price = ko.observable(item.price);
+        var self = this;
+        self.name = ko.observable(item.name);
+        self.sales = ko.observable(item.sales);
+        self.price = ko.observable(item.price);
     };
 
     /**

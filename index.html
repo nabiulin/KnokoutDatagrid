@@ -13,9 +13,15 @@
     <table class="table tbl-bordered">
         <thead>
             <tr>
-                <td><input type="text"/></td>
-                <td><input type="text"/></td>
-                <td><input type="text"/></td>
+                <td>
+                    <input type="search" name="byName" data-bind="searchable: {key: 'name'}, valueUpdate: 'keyup'" autocomplete="off"/>
+                </td>
+                <td>
+                    <input type="search" name="bySale" data-bind="searchable: {key: 'sales'}, valueUpdate: 'keyup'" autocomplete="off"/>
+                </td>
+                <td>
+                    <input type="search" name="byPrice" data-bind="searchable: {key: 'price'}, valueUpdate: 'keyup'" autocomplete="off"/>
+                </td>
             </tr>
             <tr>
                 <th><a data-bind="sortable: {key: 'name'}" href="javascript:void(0);">Name</a></th>

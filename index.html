@@ -2,16 +2,27 @@
 <html>
 <head>
     <title>KnockoutDatagrid</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
-    <script type="text/javascript" src="/libs/jquery.js"></script>
-    <script type="text/javascript" src="/libs/knockoutjs.js"></script>
-    <script type="text/javascript" src="/js/datagrid.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <script type="text/javascript" src="libs/jquery.js"></script>
+    <script type="text/javascript" src="libs/knockoutjs.js"></script>
+    <script type="text/javascript" src="js/datagrid.js"></script>
 </head>
 <body>
 <div class="container">
     <table class="table tbl-bordered">
         <thead>
+            <tr>
+                <td>
+                    <input type="search" name="byName" data-bind="searchable: {key: 'name'}, valueUpdate: 'keyup'" autocomplete="off"/>
+                </td>
+                <td>
+                    <input type="search" name="bySale" data-bind="searchable: {key: 'sales'}, valueUpdate: 'keyup'" autocomplete="off"/>
+                </td>
+                <td>
+                    <input type="search" name="byPrice" data-bind="searchable: {key: 'price'}, valueUpdate: 'keyup'" autocomplete="off"/>
+                </td>
+            </tr>
             <tr>
                 <th><a data-bind="sortable: {key: 'name'}" href="javascript:void(0);">Name</a></th>
                 <th><a data-bind="sortable: {key: 'sales'}" href="javascript:void(0);">Sales</a></th>

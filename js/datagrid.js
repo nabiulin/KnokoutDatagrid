@@ -5,7 +5,8 @@ $(function(){
      * @type {Object}
      */
     var settings = {
-        items: items
+        items: items,
+        pageSize: 5
     };
 
     /**
@@ -28,6 +29,25 @@ $(function(){
         var self = this;
         self.items = ko.observableArray(items);
         self.order = ko.observable(0);
+        self.pageSize = settings.pageSize || 5;
+        self.currentPage = ko.observable(0);
+
+        /**
+         * Pagination
+         * @type {*}
+         */
+        self.itemsOnPage = ko.computed(function () {
+            var startIndex = self.pageSize * self.currentPage();
+            return self.items.slice(startIndex, startIndex + self.pageSize);
+        }, self);
+
+        /**
+         * Get max page index
+         * @type {*}
+         */
+        self.maxPage = ko.computed(function () {
+            return Math.ceil(ko.utils.unwrapObservable(self.items).length / self.pageSize) - 1;
+        }, self);
 
         /**
          * Search
@@ -87,10 +107,9 @@ $(function(){
      */
     ko.bindingHandlers.searchable = {
         init: function (element, valueAccessor, allBindings, viewModel) {
-            var $element = $(element);
             var value = valueAccessor() || {};
-            $element.on('keyup', function(){
-                viewModel.search(value.key, $element.val());
+            $(element).on('keyup', function(){
+                viewModel.search(value.key, $(this).val());
             });
         }
     };

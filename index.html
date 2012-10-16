@@ -2,41 +2,65 @@
 <html>
 <head>
     <title>KnockoutDatagrid</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.js"></script>
+    <link rel="stylesheet" href="css/datagrid.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.1.0.js"></script>
     <script type="text/javascript" src="js/datagrid.js"></script>
 </head>
 <body>
 <div class="container">
-    <table class="table tbl-bordered">
+    <table class="table table-hover">
         <thead>
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <input type="search" name="byName" data-bind="searchable: {key: 'name'}, valueUpdate: 'keyup'" autocomplete="off"/>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <input type="search" name="bySale" data-bind="searchable: {key: 'sales'}, valueUpdate: 'keyup'" autocomplete="off"/>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <input type="search" name="byPrice" data-bind="searchable: {key: 'price'}, valueUpdate: 'keyup'" autocomplete="off"/>-->
+<!--                </td>-->
+<!--                <td>&nbsp;</td>-->
+<!--            </tr>-->
             <tr>
-                <td>
-                    <input type="search" name="byName" data-bind="searchable: {key: 'name'}, valueUpdate: 'keyup'" autocomplete="off"/>
-                </td>
-                <td>
-                    <input type="search" name="bySale" data-bind="searchable: {key: 'sales'}, valueUpdate: 'keyup'" autocomplete="off"/>
-                </td>
-                <td>
-                    <input type="search" name="byPrice" data-bind="searchable: {key: 'price'}, valueUpdate: 'keyup'" autocomplete="off"/>
-                </td>
-            </tr>
-            <tr>
-                <th><a data-bind="sortable: {key: 'name'}" href="javascript:void(0);">Name</a></th>
-                <th><a data-bind="sortable: {key: 'sales'}" href="javascript:void(0);">Sales</a></th>
-                <th><a data-bind="sortable: {key: 'price'}" href="javascript:void(0);">Price</a></th>
+                <th style="width: 60%"><a data-bind="sortable: {key: 'name'}" href="javascript:void(0);">Name</a></th>
+                <th style="width: 10%"><a data-bind="sortable: {key: 'sales'}" href="javascript:void(0);">Sales</a></th>
+                <th style="width: 10%"><a data-bind="sortable: {key: 'price'}" href="javascript:void(0);">Price</a></th>
+                <th style="width: 10%">&nbsp;</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: itemsOnPage">
             <tr>
-                <td data-bind="text: name"></td>
-                <td data-bind="text: sales"></td>
-                <td data-bind="text: price"></td>
+                <td>
+                    <span data-bind="text:name, visible: !$root.isEditable($data)"></span>
+                    <input type="text" data-bind="value: name, visible: $root.isEditable($data)"/>
+                </td>
+                <td>
+                    <span data-bind="text:sales, visible: !$root.isEditable($data)"></span>
+                    <input type="text" data-bind="value: sales, visible: $root.isEditable($data)"/>
+                </td>
+                <td>
+                    <span data-bind="text:price, visible: !$root.isEditable($data)"></span>
+                    <input type="text" data-bind="value: price, visible: $root.isEditable($data)"/>
+                </td>
+                <td>
+                    <i class="icon-edit" data-bind="click: $root.edit, visible: !$root.isEditable($data)"></i>
+                    <i class="icon-ok" data-bind="click: $root.edit, visible: $root.isEditable($data)"></i>
+                    <i class="icon-remove" data-bind="click: $root.remove"></i>
+                </td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3  ">
+                    <button class="btn btn-primary" data-bind="click: add">Add item</button>
+                </td>
+            </tr>
+        </tfoot>
     </table>
     <div class="pagination">
         <ul data-bind="foreach: ko.utils.range(0, maxPage)">

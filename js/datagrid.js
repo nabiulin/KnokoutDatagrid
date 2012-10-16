@@ -5,8 +5,8 @@ $(function(){
      * @type {Object}
      */
     var settings = {
-        items: items,
-        pageSize: 5
+        items: items || {},
+        pageSize: 15
     };
 
     /**
@@ -31,12 +31,22 @@ $(function(){
         self.order = ko.observable(0);
         self.pageSize = settings.pageSize || 5;
         self.currentPage = ko.observable(0);
+        self.editableItem = ko.observable();
+
+        /**
+         * Make sure that item is editable
+         * @param item item
+         * @return {Boolean}
+         */
+        self.isEditable = function(item) {
+            return item == self.editableItem();
+        };
 
         /**
          * Pagination
          * @type {*}
          */
-        self.itemsOnPage = ko.computed(function () {
+        self.itemsOnPage = ko.computed(function() {
             var startIndex = self.pageSize * self.currentPage();
             return self.items.slice(startIndex, startIndex + self.pageSize);
         }, self);
@@ -45,7 +55,7 @@ $(function(){
          * Get max page index
          * @type {*}
          */
-        self.maxPage = ko.computed(function () {
+        self.maxPage = ko.computed(function() {
             return Math.ceil(ko.utils.unwrapObservable(self.items).length / self.pageSize) - 1;
         }, self);
 
@@ -85,8 +95,29 @@ $(function(){
          * Add item to collection
          * @param item new item
          */
-        self.add = function(item) {
-            self.items.push(new GridModel(item));
+        self.add = function() {
+            var item = new GridModel({name: 'New', sales: '0', price: '0'});
+
+            if (self.editableItem() == null) {
+                self.items.unshift(item);
+                self.editableItem(item);
+            }
+        };
+
+        /**
+         * Edit item
+         * @param item
+         */
+        self.edit = function(item) {
+            self.editableItem() == null ? self.editableItem(item) : self.editableItem(null);
+        };
+
+        /**
+         * Remove item from array
+         * @param item
+         */
+        self.remove = function(item) {
+            self.items.remove(item);
         };
     };
 

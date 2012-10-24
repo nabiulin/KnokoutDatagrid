@@ -2,11 +2,10 @@ $(function(){
 
     /**
      * Grid global settings
-     * @type {Object}
      */
     var settings = {
         items: items || {},
-        pageSize: 15
+        pageSize: 10
     };
 
     /**
@@ -29,14 +28,14 @@ $(function(){
         var self = this;
         self.items = ko.observableArray(items);
         self.order = ko.observable(0);
-        self.pageSize = settings.pageSize || 5;
+        self.pageSize = settings.pageSize || 10;
         self.currentPage = ko.observable(0);
         self.editableItem = ko.observable();
 
         /**
          * Make sure that item is editable
          * @param item item
-         * @return {Boolean}
+         * @return boolean
          */
         self.isEditable = function(item) {
             return item == self.editableItem();
@@ -44,7 +43,7 @@ $(function(){
 
         /**
          * Pagination
-         * @type {*}
+         * @return array
          */
         self.itemsOnPage = ko.computed(function() {
             var startIndex = self.pageSize * self.currentPage();
@@ -53,7 +52,7 @@ $(function(){
 
         /**
          * Get max page index
-         * @type {*}
+         * @return int
          */
         self.maxPage = ko.computed(function() {
             return Math.ceil(ko.utils.unwrapObservable(self.items).length / self.pageSize) - 1;
@@ -65,12 +64,13 @@ $(function(){
          * @param value search value
          */
         self.search = function(key, value){
-            self.items(ko.dependentObservable(function() {
+            var found = ko.dependentObservable(function() {
                 var query = value.toString().toLowerCase();
                 return ko.utils.arrayFilter(settings.items, function(item) {
                     return item[key].toString().toLowerCase().indexOf(query) >= 0;
                 });
-            }, self));
+            });
+            self.items(found());
         };
 
         /**
@@ -93,7 +93,6 @@ $(function(){
 
         /**
          * Add item to collection
-         * @param item new item
          */
         self.add = function() {
             var item = new GridModel({name: 'New', sales: '0', price: '0'});
@@ -118,6 +117,7 @@ $(function(){
          */
         self.remove = function(item) {
             self.items.remove(item);
+            self.editableItem(null);
         };
     };
 
@@ -139,7 +139,7 @@ $(function(){
     ko.bindingHandlers.searchable = {
         init: function (element, valueAccessor, allBindings, viewModel) {
             var value = valueAccessor() || {};
-            $(element).on('keyup', function(){
+            $(element).on('keyup', function() {
                 viewModel.search(value.key, $(this).val());
             });
         }

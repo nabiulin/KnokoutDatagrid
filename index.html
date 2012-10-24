@@ -14,23 +14,23 @@
 <div class="container">
     <table class="table table-hover">
         <thead>
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <input type="search" name="byName" data-bind="searchable: {key: 'name'}, valueUpdate: 'keyup'" autocomplete="off"/>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <input type="search" name="bySale" data-bind="searchable: {key: 'sales'}, valueUpdate: 'keyup'" autocomplete="off"/>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <input type="search" name="byPrice" data-bind="searchable: {key: 'price'}, valueUpdate: 'keyup'" autocomplete="off"/>-->
-<!--                </td>-->
-<!--                <td>&nbsp;</td>-->
-<!--            </tr>-->
             <tr>
-                <th style="width: 60%"><a data-bind="sortable: {key: 'name'}" href="javascript:void(0);">Name</a></th>
-                <th style="width: 10%"><a data-bind="sortable: {key: 'sales'}" href="javascript:void(0);">Sales</a></th>
-                <th style="width: 10%"><a data-bind="sortable: {key: 'price'}" href="javascript:void(0);">Price</a></th>
-                <th style="width: 10%">&nbsp;</th>
+                <td>
+                    <input type="search" name="byName" data-bind="searchable: {key: 'name'}" autocomplete="off"/>
+                </td>
+                <td>
+                    <input type="search" name="bySale" data-bind="searchable: {key: 'sales'}" autocomplete="off"/>
+                </td>
+                <td>
+                    <input type="search" name="byPrice" data-bind="searchable: {key: 'price'}" autocomplete="off"/>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <th width="60%"><a data-bind="sortable: {key: 'name'}" href="javascript:void(0);">Name</a></th>
+                <th width="10%"><a data-bind="sortable: {key: 'sales'}" href="javascript:void(0);">Sales</a></th>
+                <th width="10%"><a data-bind="sortable: {key: 'price'}" href="javascript:void(0);">Price</a></th>
+                <th width="10%">&nbsp;</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: itemsOnPage">
